@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="data" uuid="58682f68-17ed-4900-af51-0cff2e4d4630">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:D:\My Files\Lessons\Semestr 7\Aplikacje internetowe 2\AI2-Pogodynka\pogodynka\var\data.db</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+      <driver-properties>
+        <property name="date_string_format" value="yyyy-MM-dd" />
+        <property name="date_class" value="TEXT" />
+      </driver-properties>
+    </data-source>
+  </component>
+</project>
