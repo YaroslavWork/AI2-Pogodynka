@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Location index{% endblock %}
+
+{% block body %}
+    <h1>Location</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Country</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for location in locations %}
+            <tr>
+                <td>{{ location.id }}</td>
+                <td>{{ location.name }}</td>
+                <td>{{ location.country.name }}</td>
+                <td>{{ location.latitude }}</td>
+                <td>{{ location.longitude }}</td>
+                <td>
+                    <a href="{{ path('app_location_show', {'id': location.id}) }}"><button class="btn btn-outline-primary">Show</button></a>
+                    <a href="{{ path('app_location_edit', {'id': location.id}) }}"><button class="btn btn-outline-secondary">Edit</button></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="container text-center">
+        <a href="{{ path('app_location_new') }}"><button class="btn btn-success btn-lg">Create new</button></a>
+        <a href="{{ path('app_measurements_index') }}"><button class="btn btn-outline-secondary btn-lg">Go to Weather</button></a>
+    </div>
+{% endblock %}
+

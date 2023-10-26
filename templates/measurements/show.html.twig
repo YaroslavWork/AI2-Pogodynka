@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Weather{% endblock %}
+
+{% block body %}
+    <div class="btn-group">
+        <h1 class="text-muted">Weather</h1><h1 class="text-primary">></h1><h1>Show</h1>
+    </div>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ weather.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ weather.date ? weather.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Temperature</th>
+                <td>{{ weather.temperature }}</td>
+            </tr>
+            <tr>
+                <th>Humidity</th>
+                <td>{{ weather.humidity }}</td>
+            </tr>
+            <tr>
+                <th>Precipitation</th>
+                <td>{{ weather.precipitation }}</td>
+            </tr>
+            <tr>
+                <th>WindDirection</th>
+                <td>{{ weather.windDirection }}</td>
+            </tr>
+            <tr>
+                <th>WindSpeed</th>
+                <td>{{ weather.windSpeed }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="container text-center">
+        <div class="btn-group">
+            <a href="{{ path('app_measurements_index') }}"><button type="button" class="btn btn-outline-secondary m-1">Back to list</button></a>
+            <a href="{{ path('app_measurements_edit', {'id': weather.id}) }}"><button type="button" class="btn btn-outline-primary m-1">Edit</button></a>
+            {{ include('measurements/_delete_form.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

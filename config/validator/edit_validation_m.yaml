@@ -1,0 +1,18 @@
+App\Entity\Weather:
+
+  properties:
+    humidity:
+      - Range:
+          min: 0
+          max: 1
+          groups: [new, edit]
+    precipitation:
+      - Range:
+          min: 0
+          max: 1
+          groups: [new, edit]
+    windDirection:
+      - Range:
+          min: 0
+          max: 360
+          groups: [new, edit]
