@@ -17,7 +17,9 @@
                 <th>Type</th>
                 <th>WindDirection</th>
                 <th>WindSpeed</th>
+                {% if is_granted('ROLE_MEASUREMENT_SHOW') or is_granted('ROLE_MEASUREMENT_EDIT') %}
                 <th>actions</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -32,10 +34,16 @@
                 <td>{{ weather.weatherType.precipitationType }}</td>
                 <td>{{ weather.windDirection }}°</td>
                 <td>{{ weather.windSpeed }} km/h</td>
+                {% if is_granted('ROLE_MEASUREMENT_SHOW') or is_granted('ROLE_MEASUREMENT_EDIT') %}
                 <td>
+                    {% if is_granted('ROLE_MEASUREMENT_SHOW') %}
                     <a href="{{ path('app_measurements_show', {'id': weather.id}) }}"><button class="btn btn-outline-primary">Show</button></a>
+                    {% endif %}
+                    {% if is_granted('ROLE_MEASUREMENT_EDIT') %}
                     <a href="{{ path('app_measurements_edit', {'id': weather.id}) }}"><button class="btn btn-outline-secondary">Edit</button></a>
+                    {% endif %}
                 </td>
+                {% endif %}
             </tr>
         {% else %}
             <tr>
@@ -46,8 +54,9 @@
     </table>
 
     <div class="container text-center">
+        {% if is_granted('ROLE_MEASUREMENT_NEW') %}
         <a href="{{ path('app_measurements_new') }}"><button class="btn btn-success btn-lg">Create new</button></a>
-        <a href="{{ path('app_location_index') }}"><button class="btn btn-outline-secondary btn-lg">Go to Location</button></a>
+        {% endif %}
     </div>
 
 {% endblock %}

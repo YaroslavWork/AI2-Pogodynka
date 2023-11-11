@@ -13,7 +13,9 @@
                 <th>Country</th>
                 <th>Latitude</th>
                 <th>Longitude</th>
-                <th>actions</th>
+                {% if is_granted('ROLE_LOCATION_SHOW') or is_granted('ROLE_LOCATION_EDIT') %}
+                    <th>actions</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -24,10 +26,16 @@
                 <td>{{ location.country.name }}</td>
                 <td>{{ location.latitude }}</td>
                 <td>{{ location.longitude }}</td>
+                {% if is_granted('ROLE_LOCATION_SHOW') or is_granted('ROLE_LOCATION_EDIT') %}
                 <td>
+                    {% if is_granted('ROLE_LOCATION_SHOW') %}
                     <a href="{{ path('app_location_show', {'id': location.id}) }}"><button class="btn btn-outline-primary">Show</button></a>
+                    {% endif %}
+                    {% if is_granted('ROLE_LOCATION_EDIT') %}
                     <a href="{{ path('app_location_edit', {'id': location.id}) }}"><button class="btn btn-outline-secondary">Edit</button></a>
+                    {% endif %}
                 </td>
+                {% endif %}
             </tr>
         {% else %}
             <tr>
@@ -38,8 +46,9 @@
     </table>
 
     <div class="container text-center">
-        <a href="{{ path('app_location_new') }}"><button class="btn btn-success btn-lg">Create new</button></a>
-        <a href="{{ path('app_measurements_index') }}"><button class="btn btn-outline-secondary btn-lg">Go to Weather</button></a>
+        {% if is_granted('ROLE_LOCATION_NEW') %}
+            <a href="{{ path('app_location_new') }}"><button class="btn btn-success btn-lg">Create new</button></a>
+        {% endif %}
     </div>
 {% endblock %}
 
