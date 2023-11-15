@@ -21,6 +21,17 @@ class LocationRepository extends ServiceEntityRepository
         parent::__construct($registry, Location::class);
     }
 
+    public function findOneByCountryCodeAndName($countryCode, $cityName)
+    {
+        $qb = $this->createQueryBuilder("l");
+        $qb->leftJoin("l.country", "c");
+        $qb->where("c.code=:code");
+        $qb->setParameter("code", $countryCode);
+        $qb->andWhere("l.name=:name");
+        $qb->setParameter("name", $cityName);
+        return $qb->getQuery()->getSingleResult();
+    }
+
 //    /**
 //     * @return Location[] Returns an array of Location objects
 //     */
