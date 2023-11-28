@@ -1,0 +1,6 @@
+city,country,date,celsius,fahrenheit
+{% for measurement in measurements %}
+{% if loop.first %}<br>{% endif %}
+{{ city }},{{ country }},{{ measurement.date | date('Y-m-d') }},{{ measurement.temperature }},{{ measurement.fahrenheit }}
+{% if not loop.last %}<br>{% endif %}
+{% endfor %}

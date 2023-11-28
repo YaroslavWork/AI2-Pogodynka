@@ -23,8 +23,7 @@ class WeatherUtil
      */
     public function getWeatherForLocation(Location $location): array
     {
-        $measurements = $this->weatherRepository->findByLocation($location);
-        return $measurements;
+        return $this->weatherRepository->findByLocation($location);
     }
 
     /**
